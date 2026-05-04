@@ -1,19 +1,21 @@
 package com.br.emakers.lib_api.data.entity;
 
+import com.br.emakers.lib_api.data.dto.request.BookRequestDTO;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "book_loan")
 public class BookLoan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loan_id")
-    private Long loan_id;
+    private Long loanId;
 
     @ManyToOne()
     @JoinColumn(name = "book_id", nullable = false)
@@ -22,4 +24,5 @@ public class BookLoan {
     @ManyToOne()
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
+
 }
