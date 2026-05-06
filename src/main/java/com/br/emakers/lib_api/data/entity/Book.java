@@ -4,15 +4,14 @@ import java.time.LocalDate;
 
 import com.br.emakers.lib_api.data.dto.request.BookRequestDTO;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "book")
 public class Book {
 
@@ -30,10 +29,12 @@ public class Book {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    @Builder
-    public Book(BookRequestDTO bookResquestDTO) {
-        this.name = bookResquestDTO.name();
-        this.author = bookResquestDTO.author();
-        this.releaseDate = bookResquestDTO.releaseDate();
+    public Book(BookRequestDTO bookRequestDTO) {
+        this.name = bookRequestDTO.name();
+        this.author = bookRequestDTO.author();
+        this.releaseDate = bookRequestDTO.releaseDate();
     }
+
 }
+
+
