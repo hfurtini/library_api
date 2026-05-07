@@ -1,6 +1,7 @@
 package com.br.emakers.lib_api.service;
 
 import com.br.emakers.lib_api.data.dto.response.PersonResponseDTO;
+import com.br.emakers.lib_api.data.entity.Person;
 import com.br.emakers.lib_api.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class PersonService {
     }
 
     public PersonResponseDTO deletePerson(){
+        return null;
+    }
+
+    private Person getPersonEntityById(){
         return null;
     }
 }

@@ -1,6 +1,5 @@
 package com.br.emakers.lib_api.data.entity;
 
-import com.br.emakers.lib_api.data.dto.request.BookRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
