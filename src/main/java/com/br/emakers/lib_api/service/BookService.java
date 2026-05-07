@@ -55,7 +55,7 @@ public class BookService {
 
         bookRepository.delete(book);
 
-        return "Book name: " + bookId + " deleted.";
+        return "Book name: " + book.getName() + " deleted.";
     }
 
     private Book getBookEntityById(Long bookId){
