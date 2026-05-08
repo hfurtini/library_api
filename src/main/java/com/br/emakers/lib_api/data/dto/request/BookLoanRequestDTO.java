@@ -8,6 +8,6 @@ public record BookLoanRequestDTO(
     Long bookId,
 
     @NotBlank(message = "A person id is required")
-    Long personID
+    Long personId
 ) {
 }
