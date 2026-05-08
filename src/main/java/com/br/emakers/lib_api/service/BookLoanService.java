@@ -2,6 +2,7 @@ package com.br.emakers.lib_api.service;
 
 import com.br.emakers.lib_api.data.dto.request.BookLoanRequestDTO;
 import com.br.emakers.lib_api.data.dto.response.BookLoanResponseDTO;
+import com.br.emakers.lib_api.data.dto.response.BookResponseDTO;
 import com.br.emakers.lib_api.data.entity.BookLoan;
 import com.br.emakers.lib_api.data.entity.Person;
 import com.br.emakers.lib_api.data.entity.Book;
@@ -47,6 +48,23 @@ public class BookLoanService {
                 .build();
 
         BookLoan savedLoan = bookLoanRepository.save(loanId);
+        return new BookLoanResponseDTO(savedLoan);
+    }
+
+    public BookLoanResponseDTO updateLoan(Long loanId, BookLoanRequestDTO bookLoanRequestDTO){
+        BookLoan bookLoan = getBookLoanById(loanId);
+
+        Book book = bookRepository.findById(bookLoanRequestDTO.bookId())
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+
+        Person person = personRepository.findById(bookLoanRequestDTO.personID())
+                .orElseThrow(() -> new RuntimeException("Person not found"));
+
+        bookLoan.setBook(book);
+        bookLoan.setPerson(person);
+
+        BookLoan savedLoan = bookLoanRepository.save(bookLoan);
+
         return new BookLoanResponseDTO(savedLoan);
     }
 
