@@ -3,6 +3,7 @@ package com.br.emakers.lib_api.service;
 import com.br.emakers.lib_api.data.dto.request.PersonRequestDTO;
 import com.br.emakers.lib_api.data.dto.response.PersonResponseDTO;
 import com.br.emakers.lib_api.data.entity.Person;
+import com.br.emakers.lib_api.exceptions.general.EntityNotFoundException;
 import com.br.emakers.lib_api.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,6 @@ public class PersonService {
     }
 
     private Person getPersonEntityById(Long personId){
-        return personRepository.findById(personId).orElseThrow(() -> new RuntimeException("Person not found"));
+        return personRepository.findById(personId).orElseThrow(() -> new EntityNotFoundException(personId));
     }
 }

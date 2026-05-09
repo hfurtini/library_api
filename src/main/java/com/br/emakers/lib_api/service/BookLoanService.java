@@ -5,6 +5,7 @@ import com.br.emakers.lib_api.data.dto.response.BookLoanResponseDTO;
 import com.br.emakers.lib_api.data.entity.BookLoan;
 import com.br.emakers.lib_api.data.entity.Person;
 import com.br.emakers.lib_api.data.entity.Book;
+import com.br.emakers.lib_api.exceptions.general.EntityNotFoundException;
 import com.br.emakers.lib_api.repository.BookLoanRepository;
 import com.br.emakers.lib_api.repository.BookRepository;
 import com.br.emakers.lib_api.repository.PersonRepository;
@@ -76,6 +77,6 @@ public class BookLoanService {
     }
 
     private BookLoan getBookLoanById(Long loanId){
-        return bookLoanRepository.findById(loanId).orElseThrow(() -> new RuntimeException("Book loan not found"));
+        return bookLoanRepository.findById(loanId).orElseThrow(() -> new EntityNotFoundException(loanId));
     }
 }

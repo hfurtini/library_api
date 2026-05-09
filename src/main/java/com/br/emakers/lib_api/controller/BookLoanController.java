@@ -3,6 +3,7 @@ package com.br.emakers.lib_api.controller;
 import com.br.emakers.lib_api.data.dto.request.BookLoanRequestDTO;
 import com.br.emakers.lib_api.data.dto.response.BookLoanResponseDTO;
 import com.br.emakers.lib_api.service.BookLoanService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +31,12 @@ public class BookLoanController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity <BookLoanResponseDTO> createLoan(@RequestBody BookLoanRequestDTO bookLoanRequestDTO){
+    public ResponseEntity <BookLoanResponseDTO> createLoan(@Valid @RequestBody BookLoanRequestDTO bookLoanRequestDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(bookLoanService.createLoan(bookLoanRequestDTO));
     }
 
     @PutMapping("/update/{loanId}")
-    public ResponseEntity <BookLoanResponseDTO> updateLoan(@PathVariable Long loanId, @RequestBody BookLoanRequestDTO bookLoanRequestDTO){
+    public ResponseEntity <BookLoanResponseDTO> updateLoan(@PathVariable Long loanId, @Valid @RequestBody BookLoanRequestDTO bookLoanRequestDTO){
         return ResponseEntity.status(HttpStatus.OK).body(bookLoanService.updateLoan(loanId, bookLoanRequestDTO));
     }
 
