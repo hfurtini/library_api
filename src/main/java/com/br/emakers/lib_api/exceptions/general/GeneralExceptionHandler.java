@@ -15,7 +15,7 @@ public class GeneralExceptionHandler{
     @ExceptionHandler(EntityNotFoundException.class)
     private ResponseEntity<com.br.emakers.lib_api.exceptions.general.RestErrorMessage> entityNotFoundHandler(EntityNotFoundException exception){
 
-        com.br.emakers.lib_api.exceptions.general.RestErrorMessage errorMessage = new com.br.emakers.lib_api.exceptions.general.RestErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+        com.br.emakers.lib_api.exceptions.general.RestErrorMessage errorMessage = new com.br.emakers.lib_api.exceptions.general.RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
 
         return ResponseEntity.status(errorMessage.status()).body(errorMessage);
     }
