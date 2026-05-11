@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS person (
     name VARCHAR(100) NOT NULL,
     cpf VARCHAR(11) UNIQUE NOT NULL,
     cep VARCHAR(9),
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL
 );
 
