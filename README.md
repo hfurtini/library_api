@@ -6,7 +6,7 @@ A RESTful API for library management built with Spring Boot. This system allows 
 
 ## Technologies
 
-- **Java 17**
+- **Java 21**
 - **Spring Boot**
 - **Spring Security** — Authentication and authorization
 - **Spring Data JPA** — Database communication
@@ -14,7 +14,6 @@ A RESTful API for library management built with Spring Boot. This system allows 
 - **Flyway** — Database versioning and migrations
 - **Swagger / SpringDoc OpenAPI** — API documentation
 - **Lombok** — Boilerplate reduction
-- **ViaCep API** — Automatic address lookup by ZIP code
 
 ---
 
@@ -26,10 +25,10 @@ A RESTful API for library management built with Spring Boot. This system allows 
 - [x] Book return management
 - [x] Many-to-many relationship between Person and Book
 - [x] User authentication
-- [x] Automatic address lookup via ViaCep
 - [x] Exception handling
 - [x] API documentation with Swagger
 - [ ] Docker support *(coming soon)*
+- [ ] Automatic address lookup via ViaCep *(coming soon)*
 
 ---
 
