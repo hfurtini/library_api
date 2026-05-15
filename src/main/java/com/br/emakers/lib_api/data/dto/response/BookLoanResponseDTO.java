@@ -1,17 +1,24 @@
 package com.br.emakers.lib_api.data.dto.response;
 import com.br.emakers.lib_api.data.entity.BookLoan;
 
+import java.time.LocalDate;
+
 public record BookLoanResponseDTO(
         Long loanId,
-        String bookName,
-        String personName
-
+        Long bookId,
+        Long personId,
+        LocalDate loanDate,
+        LocalDate expectedReturnDate,
+        LocalDate actualReturnDate
 ) {
-    public BookLoanResponseDTO(BookLoan loan){
+    public BookLoanResponseDTO(BookLoan bookLoan) {
         this(
-                loan.getLoanId(),
-                loan.getBook().getName(),
-                loan.getPerson().getName()
+                bookLoan.getLoanId(),
+                bookLoan.getBook().getBookId(),
+                bookLoan.getPerson().getPersonId(),
+                bookLoan.getLoanDate(),
+                bookLoan.getExpectedReturnDate(),
+                bookLoan.getActualReturnDate()
         );
     }
 }

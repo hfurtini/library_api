@@ -69,7 +69,7 @@ public class BookController {
     )
     @PostMapping(value = "/create", produces = "application/json", consumes = "application/json")
     public ResponseEntity<BookResponseDTO> resgisterBook(@Valid @RequestBody BookRequestDTO bookRequestDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(bookService.registerBook(bookRequestDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookService.registerBook(bookRequestDTO));
     }
 
     @Operation(summary = "Update a book", description = "Updates the data of an existing book by its ID",

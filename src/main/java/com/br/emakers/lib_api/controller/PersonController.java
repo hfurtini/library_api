@@ -69,7 +69,7 @@ public class PersonController {
     )
     @PostMapping(value = "/create", produces = "application/json", consumes = "application/json")
     public ResponseEntity<PersonResponseDTO> registerPerson(@Valid @RequestBody PersonRequestDTO personRequestDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(personService.registerPerson(personRequestDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.registerPerson(personRequestDTO));
     }
 
     @Operation(summary = "Update a person", description = "Updates the data of an existing person by their ID",

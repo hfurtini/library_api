@@ -102,4 +102,20 @@ public class BookLoanController {
     public ResponseEntity<String> deleteLoan(@PathVariable Long loanId){
         return ResponseEntity.status(HttpStatus.OK).body(bookLoanService.deleteLoan(loanId));
     }
+
+    @Operation(summary = "Return a book", description = "Registers the return of a book and makes it available again",
+            tags = {"Book Loan"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200",
+                            content = @Content(schema = @Schema(implementation = BookLoanResponseDTO.class))),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
+    )
+    @PatchMapping(value = "/{loanId}/return", produces = "application/json")
+    public ResponseEntity<BookLoanResponseDTO> returnBook(@PathVariable Long loanId) {
+        return ResponseEntity.status(HttpStatus.OK).body(bookLoanService.returnBook(loanId));
+    }
 }

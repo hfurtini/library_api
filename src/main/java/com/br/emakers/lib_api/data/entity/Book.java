@@ -29,6 +29,9 @@ public class Book {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
+    @Column(name = "is_available", columnDefinition = "boolean default true")
+    private Boolean isAvailable = true;
+
     public Book(BookRequestDTO bookRequestDTO) {
         this.name = bookRequestDTO.name();
         this.author = bookRequestDTO.author();

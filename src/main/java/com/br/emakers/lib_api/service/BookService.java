@@ -3,7 +3,7 @@ package com.br.emakers.lib_api.service;
 import com.br.emakers.lib_api.data.dto.request.BookRequestDTO;
 import com.br.emakers.lib_api.data.dto.response.BookResponseDTO;
 import com.br.emakers.lib_api.data.entity.Book;
-import com.br.emakers.lib_api.exceptions.general.EntityNotFoundException;
+import com.br.emakers.lib_api.exception.general.EntityNotFoundException;
 import com.br.emakers.lib_api.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

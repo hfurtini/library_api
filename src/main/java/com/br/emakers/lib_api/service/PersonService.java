@@ -3,7 +3,7 @@ package com.br.emakers.lib_api.service;
 import com.br.emakers.lib_api.data.dto.request.PersonRequestDTO;
 import com.br.emakers.lib_api.data.dto.response.PersonResponseDTO;
 import com.br.emakers.lib_api.data.entity.Person;
-import com.br.emakers.lib_api.exceptions.general.EntityNotFoundException;
+import com.br.emakers.lib_api.exception.general.EntityNotFoundException;
 import com.br.emakers.lib_api.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,14 @@ public class PersonService {
     }
 
     public PersonResponseDTO registerPerson(PersonRequestDTO personRequestDTO){
+        String encryptedPassword = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder().encode(personRequestDTO.password());
+
         Person person = Person.builder()
                 .name(personRequestDTO.name())
                 .cpf(personRequestDTO.cpf())
                 .cep(personRequestDTO.cep())
                 .email(personRequestDTO.email())
-                .password(personRequestDTO.password())
+                .password(encryptedPassword)
                 .build();
 
         Person savedPerson = personRepository.save(person);
@@ -47,19 +49,14 @@ public class PersonService {
     public PersonResponseDTO updatePerson(Long personId, PersonRequestDTO personRequestDTO){
         Person person = getPersonEntityById(personId);
 
+        String encryptedPassword = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder().encode(personRequestDTO.password());
+
         person.setName(personRequestDTO.name());
-        personRepository.save(person);
-
         person.setCep(personRequestDTO.cep());
-        personRepository.save(person);
-
         person.setCpf(personRequestDTO.cpf());
-        personRepository.save(person);
-
         person.setEmail(personRequestDTO.email());
-        personRepository.save(person);
+        person.setPassword(encryptedPassword);
 
-        person.setPassword(personRequestDTO.password());
         personRepository.save(person);
 
         return new PersonResponseDTO(person);
@@ -74,6 +71,7 @@ public class PersonService {
     }
 
     private Person getPersonEntityById(Long personId){
-        return personRepository.findById(personId).orElseThrow(() -> new EntityNotFoundException(personId));
+        return personRepository.findById(personId)
+                .orElseThrow(() -> new EntityNotFoundException(personId));
     }
 }
