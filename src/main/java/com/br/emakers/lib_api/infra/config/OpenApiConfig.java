@@ -22,7 +22,7 @@ public class OpenApiConfig{
                         .description("A RESTful API for a library that provides user registration, book registration and borrowing books.")
                 )
                 .servers(Arrays.asList(
-                        new Server().url("https://localhost:8080").description("Local server")
+                        new Server().url("http://localhost:8080").description("Local server")
                 ));
     }
 

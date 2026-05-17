@@ -2,6 +2,7 @@ package com.br.emakers.lib_api.service;
 
 import com.br.emakers.lib_api.data.dto.request.PersonRequestDTO;
 import com.br.emakers.lib_api.data.dto.response.PersonResponseDTO;
+import com.br.emakers.lib_api.data.dto.response.ViaCepResponseDTO;
 import com.br.emakers.lib_api.data.entity.Person;
 import com.br.emakers.lib_api.exception.general.EntityNotFoundException;
 import com.br.emakers.lib_api.repository.PersonRepository;
@@ -16,8 +17,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PersonService {
 
-    @Autowired
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
+    private final ViaCepService viaCepService;
 
     public List<PersonResponseDTO> getAllPersons(){
         List<Person> persons = personRepository.findAll();
@@ -43,7 +44,8 @@ public class PersonService {
                 .build();
 
         Person savedPerson = personRepository.save(person);
-        return new PersonResponseDTO(savedPerson);
+        ViaCepResponseDTO address = viaCepService.getAddressByCep(personRequestDTO.cep());
+        return new PersonResponseDTO(savedPerson, address);
     }
 
     public PersonResponseDTO updatePerson(Long personId, PersonRequestDTO personRequestDTO){
@@ -59,6 +61,7 @@ public class PersonService {
 
         personRepository.save(person);
 
+        ViaCepResponseDTO addres = viaCepService.getAddressByCep(personRequestDTO.cep());
         return new PersonResponseDTO(person);
     }
 
