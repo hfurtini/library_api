@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: library_db
+    environment:
+      POSTGRES_DB: library_api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+  app:
+    build: .
+    container_name: library_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/library_api
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      API_SECURITY_TOKEN_SECRET: admim123
+    depends_on:
+      - postgres
